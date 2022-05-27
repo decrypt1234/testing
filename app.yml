@@ -1,10 +1,10 @@
 ---
 - hosts: hosts
   tasks:
-    - name: Installs nginx web server
+    - name: install nginx web server
       apt: pkg=nginx state=installed update_cache=true
 
-     - name: add apt key for nodesource
+    - name: add apt key for nodesource
       apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 
     - name: add repo for nodesource
@@ -15,17 +15,14 @@
     - name: install nodejs
       apt: name=nodejs
 
-    - name: install NPM
-         shell: npm i
-         args:
-           chdir: /home/ubuntu
-
-    - name: Install PM2
+    - name: install npm
+      shell: npm i
+      args:
+              chdir: /home/ankit/Desktop/git-testing/
+    - name: install pm2
       npm:
-        name: pm2
-        global: yes
+              name: pm2
+              global: yes
 
         #    - name: deploy git repo
         #apt_key: url= https://github.com/decrypt1234/testing.git
-
-
