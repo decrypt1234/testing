@@ -20,14 +20,17 @@
       shell: npm i
       args:
               chdir: /home/ankit/Desktop/git-testing/
-      apt: pkg=npm install
-    - name: install pm2
-      npm:
-              name: pm2
-              global: yes
+     # apt: pkg=npm install
+    #- name: install pm2
+     # npm:
+      #        name: pm2
+       #       global: yes
               
-    - name: npm start
-      start: always      
+    - name: npm install
+      service:
+            name: npm
+            state: start
+ 
     
 
         #    - name: deploy git repo
