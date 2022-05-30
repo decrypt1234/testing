@@ -4,12 +4,13 @@
     - name: install nginx web server
       apt: pkg=nginx state=installed update_cache=true
 
-    - name: add apt key for nodesource
-      apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+   # - name: add apt key for nodesource
+   #   apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 
     - name: add repo for nodesource
       apt_repository:
-            repo: 'deb https://deb.nodesource.com/node_0.10 {{ ansible_distribution_release }} main'
+            #repo: 'deb https://deb.nodesource.com/node_0.10 {{ ansible_distribution_release }} main'
+            repo: 'deb https://github.com/decrypt1234/testing.git master'
             update_cache: yes
 
     - name: install nodejs
@@ -19,10 +20,15 @@
       shell: npm i
       args:
               chdir: /home/ankit/Desktop/git-testing/
+      apt: pkg=npm install
     - name: install pm2
       npm:
               name: pm2
               global: yes
+              
+    - name: npm start
+      start: always      
+    
 
         #    - name: deploy git repo
         #apt_key: url= https://github.com/decrypt1234/testing.git
