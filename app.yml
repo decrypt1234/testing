@@ -59,10 +59,10 @@
 
     - name: install pm2
       npm:
-      name: pm2
-      #repo_apt: url= https://github.com/decrypt1234/testing.git
+        name: pm2
+        #repo_apt: url= https://github.com/decrypt1234/testing.git
       #path: /home/ankit/Desktop/git-testing/
-      global: yes
+        global: yes
 ...
 
 
