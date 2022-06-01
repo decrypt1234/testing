@@ -4,7 +4,7 @@ require("dotenv").config();
 process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 process.env.HOST = process.env.HOST || "127.0.0.1";
 /*process.env.PORT = 3000; */
-process.env.PORT = 5000;
+process.env.PORT = 4000;
 
 process.env.NETWORK_RPC_URL =
   process.env.NETWORK_RPC_URL ||
