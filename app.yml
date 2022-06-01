@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: 54.167.111.238:4000
   become: yes
   vars:
 
