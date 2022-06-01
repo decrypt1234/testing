@@ -1,39 +1,71 @@
 ---
-- hosts: hosts
-  tasks:
-    - name: install nginx web server
-      apt: pkg=nginx state=installed update_cache=true
+- hosts: localhost
+  become: yes
+  vars:
 
-   # - name: add apt key for nodesource
-   #   apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+          git_repo_url: https://github.com/decrypt1234/testing.git
+          repo_path: /home/ankit/Desktop/git-testing/
+          repo_branch: master
+  tasks:
+
+    - name: install nginx web server
+      #apt: pkg=nginx state=installed update_cache=true
+      apt: pkg=nginx
+
+    - name: add apt key for nodesource
+      apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 
     - name: add repo for nodesource
       apt_repository:
-            #repo: 'deb https://deb.nodesource.com/node_0.10 {{ ansible_distribution_release }} main'
-            repo: 'deb https://github.com/decrypt1234/testing.git master'
-            update_cache: yes
+              repo: 'deb https://deb.nodesource.com/node_0.10 {{ ansible_distribution_release }} main'
+
+              # repo: 'deb https://github.com/decrypt1234/testing.git master'
+              update_cache: yes
+
+      #- name: node | Clone/Pull repo
+      #git:
+      #        git_repo_url: https://github.com/decrypt1234/testing.git
+      #        repo_path: /home/ankit/Desktop/git-testing/
+      #        repo_branch: master
+      #        register: git_finished
 
     - name: install nodejs
       apt: name=nodejs
 
-    - name: install npm
-      shell: npm i
-      args:
-              chdir: /home/ankit/Desktop/git-testing/
-     # apt: pkg=npm install
-    #- name: install pm2
-     # npm:
-      #        name: pm2
-       #       global: yes
-              
-    - name: npm install
-      service:
-            name: npm
-            state: start
+      #- name: update
+      #apt: update
 
- 
-    
+      #- name: install npm
+      #shell: npm i
+      #args:
+      #      chdir: /home/ankit/Desktop/git-testing/
+              #apt: pkg=npm install
+              #- name: install pm2
+              #npm:
+              #name: pm2
+              #global: yes
+
+              # - name: npm install
+              #shell:
+              #name: npm
+              #state: start
 
         #    - name: deploy git repo
         #apt_key: url= https://github.com/decrypt1234/testing.git
+    - name: install npm
+      shell: npm i
+      args:
+               chdir: /home/ankit/Desktop
+
+    - name: install pm2
+      npm:
+      name: pm2
+      #repo_apt: url= https://github.com/decrypt1234/testing.git
+      #path: /home/ankit/Desktop/git-testing/
+      global: yes
 ...
+
+
+
+
+
